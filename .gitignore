@@ -1,0 +1,15 @@
+__pycache__
+*.pyc
+.ipynb_checkpoints
+*.aux
+*.log
+*.cb
+*.cb2
+*.gz
+*.bbl
+*.blg
+.venv
+.bash_history
+.cache/
+*.blend1
+adafruit-circuitpython-bundle-6.x-mpy-20210731/
