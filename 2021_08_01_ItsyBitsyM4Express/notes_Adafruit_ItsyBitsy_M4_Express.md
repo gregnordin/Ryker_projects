@@ -179,5 +179,60 @@ Output in serial terminal:
             led.fill(colorwheel(i))
             time.sleep(0.01)
     
+## 8/29/21
 
+### Objective
+
+Get the ultrasonic distance sensor to work.
+
+### Parts
+
+- [CircuitPython Starter Kit with Adafruit Itsy Bitsy M4](https://www.adafruit.com/product/4028), $24.95
+    - [ItsyBitsy M4 Express](https://www.adafruit.com/product/3800)
+    - Small breadboard
+    - Wires
+- [Ultrasonic Distance Sensor - 3V or 5V - HC-SR04 compatible - RCWL-1601](https://www.adafruit.com/product/4007#technical-details), $3.95
+
+### Info
+
+- [Pinouts](https://learn.adafruit.com/introducing-adafruit-itsybitsy-m4/pinouts)
+- Tutorials
+    - [Adafruit - Ultrasonic Distance Sensors](https://learn.adafruit.com/ultrasonic-sonar-distance-sensors)
+    - [Ultrasonic Sonar Distance Sensor](https://www.youtube.com/watch?v=opes_7Uf49U&t=2752s) in Youtube [CircuitPython Tutorial by Derek Banas](https://www.youtube.com/watch?v=opes_7Uf49U)
+
+### Preparation
+
+- Copy `adafruit_hcsr04.mpy` to `lib/` on microcontroller using Mac OS Finder.
+- Wire up microcontroller and sensor
+    - Vcc &rarr; 3.3V on microcontroller
+    - Trigger &rarr; D9
+    - Echo &rarr; D10
+    - GND &rarr; G
+
+### Code
+
+See 48:31 from [Ultrasonic Sonar Distance Sensor](https://www.youtube.com/watch?v=opes_7Uf49U), which comes from [this Adafruit tutorial](https://learn.adafruit.com/ultrasonic-sonar-distance-sensors/python-circuitpython).
+
+    """https://www.youtube.com/watch?v=opes_7Uf49U at 48:13"""
+    import time
+    import board
+    import adafruit_hcsr04
+    
+    sonar = adafruit_hcsr04.HCSR04(trigger_pin=board.D9, echo_pin=board.D10)
+    
+    while True:
+        try:
+            print(sonar.distance)
+        except RuntimeError:
+            print("Retrying...")
+        time.sleep(0.1)
+
+Output: continuous stream of distance in cm in the terminal.
+
+### Next
+
+- See 50:55 [Ultrasonic Sonar Distance Sensor](https://www.youtube.com/watch?v=opes_7Uf49U) for code to run 2 wheel car with [Adafruit Crickit](https://learn.adafruit.com/make-it-move-with-crickit).
+    - [Adafruit CRICKIT for Circuit Playground Express](https://www.adafruit.com/product/3093), $29.95
+    - [Circuit Playground Express](https://www.adafruit.com/product/3333), $24.95
+- See 51:18 [Ultrasonic Sonar Distance Sensor](https://www.youtube.com/watch?v=opes_7Uf49U) for IR remote controlled car.
 
